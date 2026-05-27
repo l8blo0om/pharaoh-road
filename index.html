@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pharaoh Road | Columbia, SC</title>
+  <meta name="description" content="A fully renovated, thoughtfully curated home in Columbia, SC. Whole-home and private-room stays minutes from downtown, Prisma Health, USC, Benedict and Allen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --slate: #6b7f8e;
+      --slate-dark: #3d4f5c;
+      --charcoal: #2a2e35;
+      --near-black: #1a1d22;
+      --white: #f7f5f2;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --blue-accent: #7fa8c0;
+      --text-body: #e2ddd6;
+      --text-muted: #9a9590;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--near-black);
+      color: var(--text-body);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(26,29,34,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-body);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--near-black);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 40%, rgba(107,127,142,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
+    }
+
+    .hero-geo {
+      position: absolute;
+      top: 0; right: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(107,127,142,0.06) 40%);
+      clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    /* Geometric diamond pattern overlay referencing the accent walls */
+    .hero-pattern {
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%;
+      height: 100%;
+      opacity: 0.04;
+      background-image:
+        repeating-linear-gradient(45deg, var(--slate) 0, var(--slate) 1px, transparent 0, transparent 50%),
+        repeating-linear-gradient(-45deg, var(--slate) 0, var(--slate) 1px, transparent 0, transparent 50%);
+      background-size: 40px 40px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 9vw, 9rem);
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--white);
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--near-black);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 3rem;
+      bottom: 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: flex-end;
+    }
+
+    .stat {
+      text-align: right;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 6rem 3rem;
+    }
+
+    .section-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── INTRO STRIP ── */
+    #intro {
+      background: var(--charcoal);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      gap: 0;
+    }
+
+    .intro-item {
+      padding: 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .intro-divider {
+      background: rgba(201,168,76,0.2);
+    }
+
+    .intro-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .intro-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--white);
+    }
+
+    .intro-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── WHOLE HOME ── */
+    #whole-home {
+      background: var(--near-black);
+    }
+
+    .whole-home-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .whole-home-copy {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .whole-home-copy p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .price-display {
+      margin: 2.5rem 0;
+      padding: 2rem;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(201,168,76,0.04);
+    }
+
+    .price-from {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .price-period {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Photo mosaic */
+    .photo-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 0.5rem;
+    }
+
+    .photo-mosaic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mosaic-tall {
+      grid-row: span 2;
+    }
+
+    .mosaic-wide {
+      grid-column: span 2;
+    }
+
+    .photo-frame {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-frame img {
+      transition: transform 0.6s ease;
+    }
+
+    .photo-frame:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Placeholder for photos */
+    .photo-placeholder {
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ── AMENITY GRID ── */
+    #amenities {
+      background: var(--charcoal);
+    }
+
+    .amenity-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-bottom: 4rem;
+      align-items: end;
+    }
+
+    .amenity-intro p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+    }
+
+    .amenity-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .amenity-col {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .amenity-col:last-child {
+      border-right: none;
+    }
+
+    .amenity-col-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+
+    .amenity-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .amenity-list li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .amenity-list li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    /* ── ROOMS ── */
+    #rooms {
+      background: var(--near-black);
+    }
+
+    .rooms-intro {
+      max-width: 600px;
+      margin-bottom: 4rem;
+    }
+
+    .rooms-intro p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .room-card {
+      background: var(--charcoal);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .room-photo {
+      height: 260px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .room-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .room-card:hover .room-photo img {
+      transform: scale(1.05);
+    }
+
+    .room-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--slate-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .room-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--gold);
+      color: var(--near-black);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .room-body {
+      padding: 1.8rem;
+    }
+
+    .room-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .room-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .room-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .room-feature {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 0.25rem 0.6rem;
+    }
+
+    .room-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--gold);
+    }
+
+    .room-price span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── GROUNDS ── */
+    #grounds {
+      background: var(--charcoal);
+      padding: 6rem 0;
+    }
+
+    #grounds .inner {
+      padding: 0 3rem;
+    }
+
+    .grounds-marquee-wrap {
+      overflow: hidden;
+      margin: 3rem 0;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 1.2rem 0;
+    }
+
+    .grounds-marquee {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+
+    .grounds-marquee span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .grounds-marquee .dot {
+      color: var(--gold);
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .grounds-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .ground-feature {
+      padding: 2.5rem;
+      border: 1px solid rgba(201,168,76,0.1);
+      background: rgba(26,29,34,0.5);
+      transition: border-color 0.3s;
+    }
+
+    .ground-feature:hover {
+      border-color: rgba(201,168,76,0.3);
+    }
+
+    .ground-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .ground-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .ground-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── LOCATION ── */
+    #location {
+      background: var(--near-black);
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      margin-top: 3rem;
+    }
+
+    .location-copy p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .proximity-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .proximity-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      font-size: 0.85rem;
+    }
+
+    .proximity-place {
+      color: var(--text-body);
+    }
+
+    .proximity-dist {
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+    }
+
+    /* ── INQUIRY ── */
+    #inquire {
+      background: var(--charcoal);
+    }
+
+    .inquiry-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .inquiry-copy p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .inquiry-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .inquiry-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(201,168,76,0.15);
+      background: rgba(201,168,76,0.03);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .inquiry-option:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.07);
+    }
+
+    .inquiry-option-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .inquiry-option-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .inquiry-option-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .inquiry-option-name {
+      font-size: 0.9rem;
+      color: var(--text-body);
+    }
+
+    /* Form */
+    .inquiry-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--text-body);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.9rem 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group select option {
+      background: var(--charcoal);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--near-black);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+
+    .footer-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .footer-address {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 0 1.5rem 4rem; }
+      #intro { grid-template-columns: 1fr; padding: 1.5rem; }
+      .intro-divider { display: none; }
+      .intro-item { padding: 1.5rem; }
+      .whole-home-grid { grid-template-columns: 1fr; }
+      .whole-home-copy { position: static; }
+      .amenity-cols { grid-template-columns: 1fr 1fr; }
+      .amenity-col { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); }
+      .rooms-grid { grid-template-columns: 1fr; }
+      .grounds-features { grid-template-columns: 1fr 1fr; }
+      .location-grid { grid-template-columns: 1fr; }
+      .inquiry-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .amenity-intro { grid-template-columns: 1fr; gap: 2rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-address { text-align: center; }
+      .hero-stats { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Pharaoh Road</a>
+  <ul class="nav-links">
+    <li><a href="#whole-home">The Home</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#rooms">Rooms</a></li>
+    <li><a href="#grounds">The Grounds</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#inquire">Inquire</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-geo"></div>
+  <div class="hero-pattern"></div>
+
+  <div class="hero-eyebrow">5113 Farrow Road · Columbia, SC · 2024 Renovation</div>
+  <h1 class="hero-title">
+    Your Private<br><em>Sanctuary.</em>
+  </h1>
+  <p class="hero-sub">
+    A fully renovated, thoughtfully curated home where every detail was chosen with intention.
+    Minutes from downtown Columbia — a world away from ordinary.
+  </p>
+  <div class="hero-ctas">
+    <a href="#whole-home" class="btn-primary">Book the Whole Home</a>
+    <a href="#rooms" class="btn-outline">Book a Room</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Bedrooms</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2.5</div>
+      <div class="stat-label">Bathrooms</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4mi</div>
+      <div class="stat-label">To Downtown</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div id="intro">
+  <div class="intro-item">
+    <div class="intro-label">Whole Home</div>
+    <div class="intro-value">From $4,000 / mo</div>
+    <div class="intro-note">Mid-term & long-term stays. Fully furnished. Utilities & high-speed internet included.</div>
+  </div>
+  <div class="intro-divider"></div>
+  <div class="intro-item">
+    <div class="intro-label">Private Rooms</div>
+    <div class="intro-value">From $900 / mo</div>
+    <div class="intro-note">Individually furnished rooms with shared access to all amenities including the fitness studio and hot tub.</div>
+  </div>
+  <div class="intro-divider"></div>
+  <div class="intro-item">
+    <div class="intro-label">The Location</div>
+    <div class="intro-value">Burton Heights</div>
+    <div class="intro-note">4 miles from downtown Columbia. Minutes to Prisma Health, USC, Benedict, Allen & Columbia College.</div>
+  </div>
+</div>
+
+<!-- WHOLE HOME -->
+<section id="whole-home">
+  <div class="whole-home-grid">
+    <div class="whole-home-copy fade-up">
+      <div class="section-tag">The Home</div>
+      <h2 class="section-title">Designed for<br>people who<br><em>notice things.</em></h2>
+
+      <p>This is not a rental with furniture in it. Every room in this house was designed — geometric accent walls, sunburst ceiling fixtures, curated art, platform beds, floating shelves. The 2024 full renovation left nothing to chance: new roof, new windows, new floors, all new appliances, all new furnishings.</p>
+
+      <p>Two living rooms with color-changing electric fireplaces. A grand piano. A full fitness studio with Peloton and Gyrotonic machine. A hot tub. And a speakeasy door that will make you feel like you live somewhere interesting — because you do.</p>
+
+      <div class="price-display">
+        <div class="price-from">Starting from</div>
+        <div class="price-amount">$4,000</div>
+        <div class="price-period">per month · whole home · utilities included</div>
+      </div>
+
+      <a href="#inquire" class="btn-primary">Request Availability</a>
+    </div>
+
+    <!-- Photo Mosaic -->
+    <div class="photo-mosaic">
+      <!-- Master bedroom - primary showcase -->
+      <div class="photo-frame mosaic-tall" style="grid-row: span 2;">
+        <img src="photos/master-wide.jpg" alt="Master bedroom suite"
+             onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'>Master Suite</div>'" />
+      </div>
+      <div class="photo-frame">
+        <img src="photos/laundry.jpg" alt="Designer laundry room"
+             onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'>Laundry Room</div>'" />
+      </div>
+      <div class="photo-frame">
+        <img src="photos/bar.jpg" alt="Built-in bar area"
+             onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'>Built-in Bar</div>'" />
+      </div>
+      <div class="photo-frame" style="grid-column: span 2;">
+        <img src="photos/entry.jpg" alt="Striped entry door"
+             onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'>Entry</div>'" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities">
+  <div class="amenity-intro fade-up">
+    <div>
+      <div class="section-tag">Every Detail</div>
+      <h2 class="section-title">Built for<br><em>living well.</em></h2>
+    </div>
+    <p>A smart home where the lights obey your phone, the kitchen island charges your devices, the faucet glows, and Alexa runs the soundtrack. Every system was chosen because the owner lives here and built the thing she wanted to come home to.</p>
+  </div>
+
+  <div class="amenity-cols fade-up">
+    <div class="amenity-col">
+      <div class="amenity-col-title">Smart Home</div>
+      <ul class="amenity-list">
+        <li>App-controlled lighting throughout</li>
+        <li>Alexa ecosystem + Alexa soundbar</li>
+        <li>Smart Fire TVs (50" & 55") in living rooms</li>
+        <li>Fire TV in master bedroom</li>
+        <li>Thumbprint keyless entry</li>
+        <li>Vivint security system</li>
+        <li>Solar-powered EV charger</li>
+        <li>High-speed Spectrum internet</li>
+        <li>Roomba robot vacuum</li>
+        <li>Island USB/charging station</li>
+        <li>LED color-changing faucet</li>
+      </ul>
+    </div>
+    <div class="amenity-col">
+      <div class="amenity-col-title">Interior</div>
+      <ul class="amenity-list">
+        <li>Hardwood floors throughout (main level)</li>
+        <li>2 living rooms with electric fireplaces</li>
+        <li>Grand piano</li>
+        <li>Pool table (dining table conversion)</li>
+        <li>Built-in bar with granite countertop</li>
+        <li>Floating shelves with curated art</li>
+        <li>Speakeasy interior door</li>
+        <li>Barn doors throughout</li>
+        <li>Geometric 3D accent walls</li>
+        <li>Sunburst ceiling fixtures</li>
+        <li>Stacked washer/dryer (barn door entry)</li>
+        <li>Board games & entertainment</li>
+      </ul>
+    </div>
+    <div class="amenity-col">
+      <div class="amenity-col-title">Master Suite</div>
+      <ul class="amenity-list">
+        <li>King platform bed</li>
+        <li>Enormous walk-in closet</li>
+        <li>Soaking tub</li>
+        <li>Walk-in shower</li>
+        <li>Bidet</li>
+        <li>Lighted smart mirror</li>
+        <li>Sitting area with chaise</li>
+        <li>Electric fireplace</li>
+        <li>Full-length arch mirror</li>
+        <li>Gold-accented white furniture suite</li>
+        <li>Split HVAC unit (climate control)</li>
+      </ul>
+    </div>
+    <div class="amenity-col">
+      <div class="amenity-col-title">Outdoors</div>
+      <ul class="amenity-list">
+        <li>Hot tub</li>
+        <li>Fitness studio (Peloton + Gyrotonic)</li>
+        <li>Pickleball net</li>
+        <li>Mini putting green</li>
+        <li>Outdoor dining oasis</li>
+        <li>Landscape lighting (exterior)</li>
+        <li>Living fence (mature privacy)</li>
+        <li>Outdoor shower (coming soon)</li>
+        <li>Sauna (coming soon)</li>
+        <li>Fenced & gated property</li>
+        <li>7-car parking on premises</li>
+        <li>Outdoor games: chess, Connect 4, cornhole</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section id="rooms">
+  <div class="rooms-intro fade-up">
+    <div class="section-tag">Private Rooms</div>
+    <h2 class="section-title">Stay your<br><em>own way.</em></h2>
+    <p>Each room is individually designed and fully furnished. All rooms include walk-in closets, flatscreen TVs, and access to every shared amenity on the property — the hot tub, fitness studio, living rooms, kitchen, and all outdoor spaces.</p>
+  </div>
+
+  <div class="rooms-grid">
+
+    <!-- Master Suite -->
+    <div class="room-card fade-up">
+      <div class="room-photo">
+        <img src="photos/master-room.jpg" alt="Master Suite"
+             onerror="this.parentElement.innerHTML='<div class=\'room-photo-placeholder\'>Master Suite</div>'" />
+        <div class="room-tag">Signature</div>
+      </div>
+      <div class="room-body">
+        <div class="room-name">The Sanctuary Suite</div>
+        <div class="room-desc">The crown of the home. An oversized king suite with its own sitting area, electric fireplace, soaking tub, walk-in shower, bidet, lighted mirror, and a walk-in closet the size of a room. Designed for guests who don't compromise.</div>
+        <div class="room-features">
+          <span class="room-feature">King Bed</span>
+          <span class="room-feature">Soaking Tub</span>
+          <span class="room-feature">Walk-in Closet</span>
+          <span class="room-feature">Electric Fireplace</span>
+          <span class="room-feature">Bidet</span>
+          <span class="room-feature">Split HVAC</span>
+        </div>
+        <div class="room-price">$1,500 <span>/ month</span></div>
+      </div>
+    </div>
+
+    <!-- Loft Room 1 -->
+    <div class="room-card fade-up">
+      <div class="room-photo">
+        <img src="photos/loft1.jpg" alt="Loft Suite"
+             onerror="this.parentElement.innerHTML='<div class=\'room-photo-placeholder\'>The Loft</div>'" />
+        <div class="room-tag">Loft Level</div>
+      </div>
+      <div class="room-body">
+        <div class="room-name">The Loft</div>
+        <div class="room-desc">A vaulted dormer bedroom with angled ceilings, bold pop-art wall pieces, natural light from multiple windows, and its own workspace. Cozy and curated — the room of someone who has taste and knows it.</div>
+        <div class="room-features">
+          <span class="room-feature">Full Bed</span>
+          <span class="room-feature">Workspace Desk</span>
+          <span class="room-feature">Walk-in Closet</span>
+          <span class="room-feature">Fire TV</span>
+          <span class="room-feature">Split HVAC</span>
+        </div>
+        <div class="room-price">$900 <span>/ month</span></div>
+      </div>
+    </div>
+
+    <!-- Downstairs Bedroom -->
+    <div class="room-card fade-up">
+      <div class="room-photo">
+        <img src="photos/bedroom3.jpg" alt="Third Bedroom"
+             onerror="this.parentElement.innerHTML='<div class=\'room-photo-placeholder\'>The Grey Room</div>'" />
+        <div class="room-tag">Lower Level</div>
+      </div>
+      <div class="room-body">
+        <div class="room-name">The Grey Room</div>
+        <div class="room-desc">A generous lower-level bedroom with geometric accent wall, platform bed, barn door entry to walk-in closet, and its own sitting nook. Calm, spacious, and fully appointed with white and gold furniture.</div>
+        <div class="room-features">
+          <span class="room-feature">Queen Bed</span>
+          <span class="room-feature">Barn Door Closet</span>
+          <span class="room-feature">Sitting Area</span>
+          <span class="room-feature">Fire TV</span>
+          <span class="room-feature">Split HVAC</span>
+        </div>
+        <div class="room-price">$1,000 <span>/ month</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GROUNDS -->
+<section id="grounds">
+  <div class="inner">
+    <div class="section-tag fade-up">Outside</div>
+    <h2 class="section-title fade-up">The Grounds.<br><em>A world unto themselves.</em></h2>
+  </div>
+
+  <div class="grounds-marquee-wrap">
+    <div class="grounds-marquee">
+      <span>HOT TUB</span><span class="dot">◆</span>
+      <span>PELOTON STUDIO</span><span class="dot">◆</span>
+      <span>GYROTONIC</span><span class="dot">◆</span>
+      <span>PICKLEBALL</span><span class="dot">◆</span>
+      <span>PUTTING GREEN</span><span class="dot">◆</span>
+      <span>OUTDOOR DINING</span><span class="dot">◆</span>
+      <span>SAUNA</span><span class="dot">◆</span>
+      <span>SOLAR EV CHARGING</span><span class="dot">◆</span>
+      <span>LIVING FENCE</span><span class="dot">◆</span>
+      <span>LANDSCAPE LIGHTING</span><span class="dot">◆</span>
+      <span>GATED & FENCED</span><span class="dot">◆</span>
+      <!-- repeat for seamless loop -->
+      <span>HOT TUB</span><span class="dot">◆</span>
+      <span>PELOTON STUDIO</span><span class="dot">◆</span>
+      <span>GYROTONIC</span><span class="dot">◆</span>
+      <span>PICKLEBALL</span><span class="dot">◆</span>
+      <span>PUTTING GREEN</span><span class="dot">◆</span>
+      <span>OUTDOOR DINING</span><span class="dot">◆</span>
+      <span>SAUNA</span><span class="dot">◆</span>
+      <span>SOLAR EV CHARGING</span><span class="dot">◆</span>
+      <span>LIVING FENCE</span><span class="dot">◆</span>
+      <span>LANDSCAPE LIGHTING</span><span class="dot">◆</span>
+      <span>GATED & FENCED</span><span class="dot">◆</span>
+    </div>
+  </div>
+
+  <div class="inner">
+    <div class="grounds-features">
+      <div class="ground-feature fade-up">
+        <div class="ground-icon">♨</div>
+        <div class="ground-name">Hot Tub</div>
+        <div class="ground-desc">A private hot tub in a landscaped setting. Year-round. Available to whole-home guests and individual room tenants alike.</div>
+      </div>
+      <div class="ground-feature fade-up">
+        <div class="ground-icon">◈</div>
+        <div class="ground-name">Fitness Studio</div>
+        <div class="ground-desc">A dedicated backyard fitness space with Peloton bike and Gyrotonic apparatus — equipment you won't find at any gym in Columbia, let alone someone's backyard.</div>
+      </div>
+      <div class="ground-feature fade-up">
+        <div class="ground-icon">◉</div>
+        <div class="ground-name">Pickleball + Play</div>
+        <div class="ground-desc">Full pickleball net setup, mini putting green, and oversized outdoor games: giant chess, Connect 4, and cornhole. The backyard is built for people.</div>
+      </div>
+      <div class="ground-feature fade-up">
+        <div class="ground-icon">⊡</div>
+        <div class="ground-name">Outdoor Dining Oasis</div>
+        <div class="ground-desc">Heated outdoor dining space with seating for a full table. Landscape lighting makes it usable after dark — and Instagrammable at all hours.</div>
+      </div>
+      <div class="ground-feature fade-up">
+        <div class="ground-icon">⚡</div>
+        <div class="ground-name">Solar EV Charging</div>
+        <div class="ground-desc">On-site solar-powered EV charger available to guests. One of the only furnished rentals in the Columbia market offering this as a standard amenity.</div>
+      </div>
+      <div class="ground-feature fade-up">
+        <div class="ground-icon">🌿</div>
+        <div class="ground-name">Privacy by Design</div>
+        <div class="ground-desc">Living fence, full perimeter fencing, and a gated entrance. Seven-car parking. Vivint security monitoring. This property is built for people who value their peace.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="section-tag fade-up">Where We Are</div>
+  <h2 class="section-title fade-up">Burton Heights,<br><em>Columbia SC.</em></h2>
+
+  <div class="location-grid">
+    <div class="location-copy fade-up">
+      <p>Just 4 miles from downtown Columbia, Pharaoh Road sits in Burton Heights — a quiet residential area with easy access to everything that matters. Travel nurses working Prisma Health Richland (1.8 miles) or Palmetto Health Baptist choose this location for its commute. Students at USC, Benedict, Allen, and Columbia College choose it for the vibe.</p>
+      <p>Columbia Metro Airport is a 27-minute drive. Bus Route 301 stops within a 2-minute walk. Three entry doors, premises parking for seven, and a neighborhood that keeps to itself.</p>
+    </div>
+
+    <div class="fade-up">
+      <ul class="proximity-list">
+        <li class="proximity-item">
+          <span class="proximity-place">Prisma Health Richland</span>
+          <span class="proximity-dist">1.8 mi</span>
+        </li>
+        <li class="proximity-item">
+          <span class="proximity-place">Palmetto Health Baptist</span>
+          <span class="proximity-dist">3 mi</span>
+        </li>
+        <li class="proximity-item">
+          <span class="proximity-place">Downtown Columbia</span>
+          <span class="proximity-dist">4 mi</span>
+        </li>
+        <li class="proximity-item">
+          <span class="proximity-place">University of South Carolina</span>
+          <span class="proximity-dist">5 mi</span>
+        </li>
+        <li class="proximity-item">
+          <span class="proximity-place">Benedict College</span>
+          <span class="proximity-dist">5 mi</span>
+        </li>
+        <li class="proximity-item">
+          <span class="proximity-place">Allen University</span>
+          <span class="proximity-dist">5 mi</span>
+        </li>
+        <li class="proximity-item">
+          <span class="proximity-place">Columbia College</span>
+          <span class="proximity-dist">6 mi</span>
+        </li>
+        <li class="proximity-item">
+          <span class="proximity-place">Columbia Metro Airport</span>
+          <span class="proximity-dist">27 min</span>
+        </li>
+        <li class="proximity-item">
+          <span class="proximity-place">COMET Bus Route 301</span>
+          <span class="proximity-dist">2 min walk</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRE -->
+<section id="inquire">
+  <div class="inquiry-wrap">
+    <div class="inquiry-copy fade-up">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title">Ready when<br><em>you are.</em></h2>
+      <p>Whole-home and private room inquiries welcome. Mid-term stays (30–90 days) are available fully furnished with utilities included. Long-term leases considered for the right tenant.</p>
+      <p>For travel nurses and healthcare professionals — this property was designed with your lifestyle in mind. Ask about healthcare worker rates.</p>
+
+      <div class="inquiry-options">
+        <a href="https://www.furnishedfinder.com" class="inquiry-option" target="_blank" rel="noopener">
+          <span class="inquiry-option-icon">🏠</span>
+          <div class="inquiry-option-text">
+            <span class="inquiry-option-label">Book on</span>
+            <span class="inquiry-option-name">Furnished Finder</span>
+          </div>
+        </a>
+        <a href="https://www.airbnb.com" class="inquiry-option" target="_blank" rel="noopener">
+          <span class="inquiry-option-icon">✦</span>
+          <div class="inquiry-option-text">
+            <span class="inquiry-option-label">Book on</span>
+            <span class="inquiry-option-name">Airbnb</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <form name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="inquiry-form fade-up">
+      <input type="hidden" name="form-name" value="inquiry" />
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first">First Name</label>
+          <input id="first" name="first" type="text" placeholder="First name" required />
+        </div>
+        <div class="form-group">
+          <label for="last">Last Name</label>
+          <input id="last" name="last" type="text" placeholder="Last name" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" placeholder="your@email.com" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input id="phone" name="phone" type="tel" placeholder="(000) 000-0000" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="interest">Interested In</label>
+          <select id="interest" name="interest">
+            <option>Whole Home</option>
+            <option>The Sanctuary Suite (Master)</option>
+            <option>The Loft</option>
+            <option>The Grey Room</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="length">Stay Length</label>
+          <select id="length" name="length">
+            <option>30–60 days</option>
+            <option>60–90 days</option>
+            <option>3–6 months</option>
+            <option>6–12 months</option>
+            <option>12+ months</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="movein">Move-In Date</label>
+        <input id="movein" name="movein" type="date" />
+      </div>
+      <div class="form-group">
+        <label for="message">Tell us about yourself</label>
+        <textarea id="message" name="message" placeholder="Profession, reason for stay, any questions..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;text-align:center;font-size:0.75rem;">
+        Send Inquiry
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Pharaoh Road</div>
+  <div class="footer-note">© 2026 · Columbia, SC · All rights reserved</div>
+  <div class="footer-address">5113 Farrow Road<br>Columbia, SC 29203</div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Stagger children within grids
+  document.querySelectorAll('.rooms-grid .room-card, .grounds-features .ground-feature, .amenity-cols .amenity-col').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.08}s`;
+  });
+</script>
+
+</body>
+</html>
