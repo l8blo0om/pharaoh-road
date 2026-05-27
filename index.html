@@ -861,6 +861,206 @@
       text-align: right;
     }
 
+    /* ── WELCOME OVERLAY ── */
+    body.welcome-on { overflow: hidden; }
+
+    #welcome {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: var(--near-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: opacity 1.2s ease, transform 1.2s ease;
+      overflow: hidden;
+    }
+
+    #welcome.entered {
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+
+    .welcome-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(107,127,142,0.15) 0%, transparent 60%);
+    }
+
+    .welcome-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image:
+        repeating-linear-gradient(45deg, var(--slate) 0, var(--slate) 1px, transparent 0, transparent 50%),
+        repeating-linear-gradient(-45deg, var(--slate) 0, var(--slate) 1px, transparent 0, transparent 50%);
+      background-size: 60px 60px;
+    }
+
+    .welcome-rule {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.4), transparent);
+    }
+    .welcome-rule.top { top: 0; height: 18%; }
+    .welcome-rule.bottom { bottom: 0; height: 18%; }
+
+    .welcome-content {
+      position: relative;
+      padding: 0 2rem;
+      max-width: 90vw;
+      animation: welcomeIn 1.6s cubic-bezier(.2,.7,.2,1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes welcomeIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .welcome-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      opacity: 0.85;
+    }
+
+    .welcome-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 11vw, 10rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .welcome-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .welcome-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+      color: var(--text-muted);
+      margin-bottom: 3.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .welcome-enter {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      padding: 1.2rem 3.5rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.4s ease;
+    }
+
+    .welcome-enter:hover {
+      background: var(--gold);
+      color: var(--near-black);
+      letter-spacing: 0.5em;
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+
+    .welcome-enter svg { transition: transform 0.4s ease; }
+    .welcome-enter:hover svg { transform: translateX(6px); }
+
+    .welcome-sound {
+      margin-top: 2.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.55;
+    }
+
+    .welcome-sound .note {
+      color: var(--gold);
+      margin-right: 0.5rem;
+    }
+
+    /* Hidden Spotify iframe mount (pre-enter) */
+    #spotify-mount {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── FLOATING PLAYER ── */
+    #player-dock {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.6rem;
+    }
+
+    #player-dock[hidden] { display: none; }
+
+    #spotify-player {
+      width: 320px;
+      height: 80px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.2);
+      transform-origin: bottom right;
+      transition: transform 0.35s cubic-bezier(.2,.7,.2,1), opacity 0.3s ease;
+    }
+
+    #spotify-player.collapsed {
+      transform: scale(0);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #player-toggle {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--near-black);
+      border: none;
+      cursor: pointer;
+      font-size: 1.15rem;
+      box-shadow: 0 6px 24px rgba(201,168,76,0.45);
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #player-toggle:hover { transform: scale(1.08); }
+
+    @media (max-width: 600px) {
+      #spotify-player { width: 280px; }
+      #player-dock { bottom: 1rem; right: 1rem; }
+    }
+
     /* ── ANIMATIONS ── */
     .fade-up {
       opacity: 0;
@@ -898,7 +1098,39 @@
     }
   </style>
 </head>
-<body>
+<body class="welcome-on">
+
+<!-- WELCOME OVERLAY -->
+<div id="welcome" role="dialog" aria-label="Welcome to Pharaoh Road">
+  <div class="welcome-bg"></div>
+  <div class="welcome-pattern"></div>
+  <div class="welcome-rule top"></div>
+  <div class="welcome-rule bottom"></div>
+
+  <div class="welcome-content">
+    <div class="welcome-eyebrow">An Invitation · Columbia, SC</div>
+    <h1 class="welcome-title"><em>Pharaoh Road.</em></h1>
+    <p class="welcome-tag">A sanctuary, by design.</p>
+
+    <button id="enter-btn" class="welcome-enter" type="button">
+      <span>Enter</span>
+      <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+        <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <p class="welcome-sound"><span class="note">♫</span> Sound on for the full experience</p>
+  </div>
+
+  <!-- Hidden Spotify mount, used pre-enter to warm up the player -->
+  <div id="spotify-mount" aria-hidden="true"></div>
+</div>
+
+<!-- FLOATING PLAYER (revealed after Enter) -->
+<div id="player-dock" hidden>
+  <div id="spotify-player"></div>
+  <button id="player-toggle" type="button" aria-label="Toggle music player">♫</button>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -1386,7 +1618,67 @@
   <div class="footer-address">5113 Farrow Road<br>Columbia, SC 29203</div>
 </footer>
 
+<!-- Spotify iframe API -->
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 <script>
+  // ── Welcome overlay + Spotify control ──
+  let spotifyController = null;
+  let entered = false;
+
+  window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    const mount = document.getElementById('spotify-player');
+    if (!mount) return;
+    IFrameAPI.createController(mount, {
+      uri: 'spotify:album:3CGev6tR6bTQakJfLLsTHV',
+      width: '100%',
+      height: '80'
+    }, (controller) => {
+      spotifyController = controller;
+      // If user already clicked Enter before the API loaded, start now.
+      if (entered) {
+        try { spotifyController.play(); } catch (e) {}
+      }
+    });
+  };
+
+  const enterBtn = document.getElementById('enter-btn');
+  const welcomeEl = document.getElementById('welcome');
+  const dock = document.getElementById('player-dock');
+
+  function enterSite() {
+    if (entered) return;
+    entered = true;
+
+    // Reveal dock first so the player has a stable size before play()
+    dock.hidden = false;
+
+    if (spotifyController) {
+      try { spotifyController.play(); } catch (e) {}
+    }
+
+    welcomeEl.classList.add('entered');
+    document.body.classList.remove('welcome-on');
+
+    setTimeout(() => {
+      if (welcomeEl.parentNode) welcomeEl.parentNode.removeChild(welcomeEl);
+    }, 1300);
+  }
+
+  enterBtn.addEventListener('click', enterSite);
+  // Keyboard accessibility: Enter / Space anywhere on the overlay
+  document.addEventListener('keydown', (e) => {
+    if (entered) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      enterSite();
+    }
+  });
+
+  // Mini-player collapse toggle
+  document.getElementById('player-toggle').addEventListener('click', () => {
+    document.getElementById('spotify-player').classList.toggle('collapsed');
+  });
+
   // Intersection Observer for fade-up animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
