@@ -4,3 +4,17 @@ node_modules/
 *.log
 .env
 .env.*
+
+# Phone & camera dumps — never auto-include these.
+# (Drop curated home photos into photos/ manually.)
+*.HEIC
+*.heic
+*.MOV
+*.mov
+*.mp4
+*.MP4
+IMG_*
+DSC*
+PXL_*
+1000*
+att.*

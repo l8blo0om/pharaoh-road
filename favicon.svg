@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#1a1d22"/>
+  <text x="50%" y="50%"
+        dominant-baseline="central"
+        text-anchor="middle"
+        font-family="Georgia, 'Cormorant Garamond', serif"
+        font-style="italic"
+        font-weight="300"
+        font-size="40"
+        fill="#c9a84c">P</text>
+  <circle cx="48" cy="48" r="3" fill="#c9a84c"/>
+</svg>
