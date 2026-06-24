@@ -606,6 +606,84 @@
       color: var(--text-muted);
     }
 
+    /* ── SPACES (bonus gallery) ── */
+    #spaces {
+      background: var(--near-black);
+    }
+
+    .spaces-intro {
+      max-width: 580px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.9;
+      margin-top: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .spaces-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-auto-rows: 240px;
+      gap: 0.7rem;
+    }
+
+    .space-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--charcoal);
+      margin: 0;
+    }
+
+    .space-card:first-child {
+      grid-row: span 2;
+    }
+
+    .space-photo {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .space-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .space-card:hover .space-photo img {
+      transform: scale(1.04);
+    }
+
+    .space-card figcaption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.35) 70%, transparent);
+      pointer-events: none;
+    }
+
+    .space-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+      line-height: 1.1;
+    }
+
+    .space-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .space-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
     /* ── GROUNDS ── */
     #grounds {
       background: var(--charcoal);
@@ -1126,6 +1204,8 @@
       .amenity-cols { grid-template-columns: 1fr 1fr; }
       .amenity-col { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); }
       .rooms-grid { grid-template-columns: 1fr; }
+      .spaces-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .spaces-grid .space-card:first-child { grid-row: span 2; grid-column: span 2; }
       .grounds-features { grid-template-columns: 1fr 1fr; }
       .location-grid { grid-template-columns: 1fr; }
       .inquiry-wrap { grid-template-columns: 1fr; gap: 3rem; }
@@ -1180,6 +1260,7 @@
     <li><a href="#whole-home">The Home</a></li>
     <li><a href="#amenities">Amenities</a></li>
     <li><a href="#rooms">Rooms</a></li>
+    <li><a href="#spaces">Spaces</a></li>
     <li><a href="#grounds">The Grounds</a></li>
     <li><a href="#location">Location</a></li>
     <li><a href="#inquire">Inquire</a></li>
@@ -1215,8 +1296,8 @@
       <div class="stat-label">Bathrooms</div>
     </div>
     <div class="stat">
-      <div class="stat-num">4mi</div>
-      <div class="stat-label">To Downtown</div>
+      <div class="stat-num">2,700</div>
+      <div class="stat-label">Sq Ft</div>
     </div>
   </div>
 </section>
@@ -1438,6 +1519,67 @@
         <div class="room-price">$1,000 <span>/ month</span></div>
       </div>
     </div>
+
+  </div>
+</section>
+
+<!-- SPACES -->
+<section id="spaces">
+  <div class="section-tag fade-up">More of the Home</div>
+  <h2 class="section-title fade-up">Every room,<br><em>its own moment.</em></h2>
+  <p class="spaces-intro fade-up">A glance at the rest of the property — the spaces between bedrooms where life actually happens.</p>
+
+  <div class="spaces-grid">
+
+    <figure class="space-card fade-up">
+      <div class="space-photo">
+        <img src="photos/living-lounge.jpg" alt="The Lounge — sectional living room with geometric wall art" loading="lazy" />
+      </div>
+      <figcaption>
+        <div class="space-name"><em>The Lounge.</em></div>
+        <div class="space-desc">Sectional, geometric wall sculpture, sunburst details, striped rug. A second living room for the moments that need quieter walls.</div>
+      </figcaption>
+    </figure>
+
+    <figure class="space-card fade-up">
+      <div class="space-photo">
+        <img src="photos/living-fireplace.jpg" alt="The Great Room — living room with electric fireplace" loading="lazy" />
+      </div>
+      <figcaption>
+        <div class="space-name"><em>The Great Room.</em></div>
+        <div class="space-desc">Wide-plank ceiling, color-changing electric fireplace, gold pendants. Room for everyone.</div>
+      </figcaption>
+    </figure>
+
+    <figure class="space-card fade-up">
+      <div class="space-photo">
+        <img src="photos/kitchen.jpg" alt="The Kitchen — subway tile, neon accents, gold bar cart" loading="lazy" />
+      </div>
+      <figcaption>
+        <div class="space-name"><em>The Kitchen.</em></div>
+        <div class="space-desc">Subway tile, neon, a gold bar cart you'll actually use. Color-changing faucet, island charging.</div>
+      </figcaption>
+    </figure>
+
+    <figure class="space-card fade-up">
+      <div class="space-photo">
+        <img src="photos/foyer.jpg" alt="The Foyer — geometric stair tile and wood feature wall" loading="lazy" />
+      </div>
+      <figcaption>
+        <div class="space-name"><em>The Foyer.</em></div>
+        <div class="space-desc">Geometric stair tile, wrought-iron rail, wood feature wall. First impression, set.</div>
+      </figcaption>
+    </figure>
+
+    <figure class="space-card fade-up">
+      <div class="space-photo">
+        <img src="photos/game-room.jpg" alt="The Game Room — pool table that converts to dining" loading="lazy" />
+      </div>
+      <figcaption>
+        <div class="space-name"><em>The Game Room.</em></div>
+        <div class="space-desc">Pool table converts to dining for ten. Built for nights that turn into something.</div>
+      </figcaption>
+    </figure>
 
   </div>
 </section>
