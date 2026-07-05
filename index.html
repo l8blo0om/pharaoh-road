@@ -1143,20 +1143,6 @@
       pointer-events: none;
     }
 
-    /* ── FLOATING PLAYER ── */
-    #player-dock {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.6rem;
-    }
-
-    #player-dock[hidden] { display: none; }
-
     /* Spotify iframe lives off-screen; we drive it via the API. */
     #spotify-player {
       position: fixed;
@@ -1167,60 +1153,36 @@
       pointer-events: none;
     }
 
+    /* Nav-integrated ambient music toggle. No floating orb. */
     #player-toggle {
-      position: relative;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: rgba(26,29,34,0.65);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(201,168,76,0.4);
-      color: var(--gold);
+      background: none;
+      border: none;
       cursor: pointer;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.4s ease, border-color 0.4s ease,
-                  color 0.4s ease, transform 0.3s cubic-bezier(.2,.7,.2,1);
+      color: var(--gold);
+      font-size: 0.95rem;
+      line-height: 1;
+      padding: 6px 10px;
+      margin-left: 1.5rem;
+      opacity: 0.35;
+      transition: opacity 0.4s ease, text-shadow 0.4s ease;
     }
 
-    #player-toggle:hover {
-      border-color: var(--gold);
-      background: rgba(201,168,76,0.15);
-      transform: scale(1.05);
-    }
+    #player-toggle[hidden] { display: none; }
+
+    #player-toggle:hover { opacity: 0.9; }
 
     #player-toggle.playing {
-      background: var(--gold);
-      color: var(--near-black);
-      border-color: var(--gold);
+      opacity: 1;
+      animation: pt-breathe 2.8s ease-in-out infinite;
     }
 
-    /* Pulse ring only when playing. */
-    #player-toggle.playing::before,
-    #player-toggle.playing::after {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 50%;
-      border: 1px solid var(--gold);
-      pointer-events: none;
-      animation: pr-pulse 2.8s ease-out infinite;
-    }
-    #player-toggle.playing::after {
-      animation-delay: 1.4s;
+    @keyframes pt-breathe {
+      0%, 100% { text-shadow: 0 0 6px rgba(201,168,76,0.25); }
+      50%      { text-shadow: 0 0 14px rgba(201,168,76,0.7); }
     }
 
-    @keyframes pr-pulse {
-      0%   { transform: scale(1);   opacity: 0.7; }
-      100% { transform: scale(1.9); opacity: 0;   }
-    }
-
-    @media (max-width: 600px) {
-      #player-dock { bottom: 1rem; right: 1rem; }
-      #player-toggle { width: 48px; height: 48px; }
+    @media (max-width: 900px) {
+      #player-toggle { margin-left: auto; }
     }
 
     /* ── ANIMATIONS ── */
@@ -1292,12 +1254,6 @@
   <div id="spotify-mount" aria-hidden="true"></div>
 </div>
 
-<!-- FLOATING PLAYER (revealed after Enter) -->
-<div id="player-dock" hidden>
-  <div id="spotify-player"></div>
-  <button id="player-toggle" type="button" aria-label="Toggle music player">♫</button>
-</div>
-
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">Pharoah Road</a>
@@ -1310,7 +1266,11 @@
     <li><a href="#location">Location</a></li>
     <li><a href="#inquire">Inquire</a></li>
   </ul>
+  <button id="player-toggle" type="button" aria-label="Toggle music" title="Toggle music" hidden>♫</button>
 </nav>
+
+<!-- Off-screen Spotify iframe mount, driven via the iframe API -->
+<div id="spotify-player" aria-hidden="true"></div>
 
 <!-- HERO -->
 <section id="hero">
@@ -1871,7 +1831,7 @@
   const enterBtn   = document.getElementById('enter-btn');
   const silentBtn  = document.getElementById('enter-silent');
   const welcomeEl  = document.getElementById('welcome');
-  const dock       = document.getElementById('player-dock');
+  const toggleBtn  = document.getElementById('player-toggle');
   const playerEl   = document.getElementById('spotify-player');
 
   function tryGet(key) {
@@ -1911,8 +1871,7 @@
     wantsMusic = !!withMusic;
     trySet(VISITED_KEY, '1');
 
-    dock.hidden = false;
-    if (!wantsMusic) playerEl.classList.add('collapsed');
+    toggleBtn.hidden = false;
 
     if (withMusic && spotifyController) {
       try { spotifyController.play(); } catch (e) {}
@@ -1933,8 +1892,7 @@
     wantsMusic = false;
     document.body.classList.remove('welcome-on');
     if (welcomeEl && welcomeEl.parentNode) welcomeEl.parentNode.removeChild(welcomeEl);
-    dock.hidden = false;
-    playerEl.classList.add('collapsed');
+    toggleBtn.hidden = false;
   } else {
     enterBtn.addEventListener('click', () => enterSite(true));
     silentBtn.addEventListener('click', () => enterSite(false));
