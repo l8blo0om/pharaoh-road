@@ -1157,43 +1157,70 @@
 
     #player-dock[hidden] { display: none; }
 
+    /* Spotify iframe lives off-screen; we drive it via the API. */
     #spotify-player {
+      position: fixed;
+      left: -9999px;
+      top: -9999px;
       width: 320px;
       height: 80px;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.2);
-      transform-origin: bottom right;
-      transition: transform 0.35s cubic-bezier(.2,.7,.2,1), opacity 0.3s ease;
-    }
-
-    #spotify-player.collapsed {
-      transform: scale(0);
-      opacity: 0;
       pointer-events: none;
     }
 
     #player-toggle {
-      width: 46px;
-      height: 46px;
+      position: relative;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: var(--gold);
-      color: var(--near-black);
-      border: none;
+      background: rgba(26,29,34,0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
       cursor: pointer;
-      font-size: 1.15rem;
-      box-shadow: 0 6px 24px rgba(201,168,76,0.45);
-      transition: transform 0.3s ease;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.4s ease, border-color 0.4s ease,
+                  color 0.4s ease, transform 0.3s cubic-bezier(.2,.7,.2,1);
     }
 
-    #player-toggle:hover { transform: scale(1.08); }
+    #player-toggle:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.15);
+      transform: scale(1.05);
+    }
+
+    #player-toggle.playing {
+      background: var(--gold);
+      color: var(--near-black);
+      border-color: var(--gold);
+    }
+
+    /* Pulse ring only when playing. */
+    #player-toggle.playing::before,
+    #player-toggle.playing::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+      animation: pr-pulse 2.8s ease-out infinite;
+    }
+    #player-toggle.playing::after {
+      animation-delay: 1.4s;
+    }
+
+    @keyframes pr-pulse {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      100% { transform: scale(1.9); opacity: 0;   }
+    }
 
     @media (max-width: 600px) {
-      #spotify-player { width: 280px; }
       #player-dock { bottom: 1rem; right: 1rem; }
+      #player-toggle { width: 48px; height: 48px; }
     }
 
     /* ── ANIMATIONS ── */
@@ -1862,7 +1889,16 @@
       height: '80'
     }, (controller) => {
       spotifyController = controller;
-      // If user already clicked Enter (with sound) before the API loaded, start now.
+
+      // Sync the ambient button's playing state to actual playback.
+      const toggleBtn = document.getElementById('player-toggle');
+      controller.addListener('playback_update', (e) => {
+        if (!toggleBtn) return;
+        const isPaused = e && e.data && e.data.isPaused;
+        toggleBtn.classList.toggle('playing', !isPaused);
+      });
+
+      // If Enter was clicked with music before the API loaded, start now.
       if (entered && wantsMusic) {
         try { spotifyController.play(); } catch (e) {}
       }
@@ -1910,13 +1946,12 @@
     });
   }
 
-  // Mini-player toggle — if music never started, first tap starts it.
+  // Ambient button — toggles playback via the Spotify iframe API.
+  // Playing/paused visual state syncs from the playback_update listener above.
   document.getElementById('player-toggle').addEventListener('click', () => {
-    const collapsed = playerEl.classList.toggle('collapsed');
-    if (!collapsed && !wantsMusic && spotifyController) {
-      wantsMusic = true;
-      try { spotifyController.play(); } catch (e) {}
-    }
+    wantsMusic = true;
+    if (!spotifyController) return;
+    try { spotifyController.togglePlay(); } catch (e) {}
   });
 
   // Intersection Observer for fade-up animations
