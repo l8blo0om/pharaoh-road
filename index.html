@@ -14,7 +14,7 @@
   <meta property="og:title" content="Pharoah Road · Columbia, SC" />
   <meta property="og:description" content="A sanctuary, by design. Whole-home and private-room stays minutes from downtown Columbia." />
   <meta property="og:image" content="/og-image.jpg" />
-  <meta property="og:url" content="https://pharaoh-road.netlify.app" />
+  <meta property="og:url" content="https://pharoahroad.com" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pharoah Road · Columbia, SC" />
   <meta name="twitter:description" content="A sanctuary, by design." />
@@ -23,6 +23,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+    /* Animatable hue custom property — makes accent colors cycle. */
+    @property --hue {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 0;
+    }
+
     :root {
       --slate: #6b7f8e;
       --slate-dark: #3d4f5c;
@@ -34,6 +41,15 @@
       --blue-accent: #7fa8c0;
       --text-body: #e2ddd6;
       --text-muted: #9a9590;
+      --hue: 0;
+    }
+
+    html {
+      animation: huecycle 22s linear infinite;
+    }
+
+    @keyframes huecycle {
+      to { --hue: 360; }
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -998,8 +1014,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.10) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(107,127,142,0.15) 0%, transparent 60%);
+        radial-gradient(ellipse at 50% 50%, hsla(var(--hue), 60%, 55%, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, hsla(calc(var(--hue) + 60), 45%, 55%, 0.13) 0%, transparent 60%);
     }
 
     .welcome-pattern {
@@ -1177,8 +1193,8 @@
     }
 
     @keyframes pt-breathe {
-      0%, 100% { text-shadow: 0 0 6px rgba(201,168,76,0.25); }
-      50%      { text-shadow: 0 0 14px rgba(201,168,76,0.7); }
+      0%, 100% { text-shadow: 0 0 6px hsla(var(--hue), 75%, 62%, 0.35); }
+      50%      { text-shadow: 0 0 18px hsla(var(--hue), 75%, 62%, 0.8);  }
     }
 
     @media (max-width: 900px) {
