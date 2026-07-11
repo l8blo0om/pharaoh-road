@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pharoah Road | Columbia, SC</title>
-  <meta name="description" content="A fully renovated, thoughtfully curated home in Columbia, SC. Whole-home and private-room stays minutes from downtown, Prisma Health, USC, Benedict and Allen." />
+  <title>Pharoah Road | Furnished Whole-Home & Private Suite Rentals in Columbia, SC</title>
+  <meta name="description" content="A fully renovated 3-bed, 2.5-bath smart home in Columbia's Burton Heights, minutes from Prisma Health, USC, and downtown. Book the whole home from $3,500/mo, or a private suite — Buddha, Dharma, or Sangha — from $825/mo, furnished with utilities included." />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href="https://pharoahroad.com/" />
   <meta name="theme-color" content="#1a1d22" />
 
   <!-- Open Graph / link previews -->
@@ -19,6 +20,37 @@
   <meta name="twitter:title" content="Pharoah Road · Columbia, SC" />
   <meta name="twitter:description" content="A sanctuary, by design." />
   <meta name="twitter:image" content="/og-image.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Pharoah Road",
+    "description": "A sanctuary, by design. A fully renovated 2024 smart home in Columbia, South Carolina's Burton Heights neighborhood, offering whole-home and private-suite furnished stays minutes from downtown Columbia, Prisma Health, USC, Benedict College, and Allen University.",
+    "url": "https://pharoahroad.com/",
+    "image": "https://pharoahroad.com/og-image.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "5113 Farrow Road",
+      "addressLocality": "Columbia",
+      "addressRegion": "SC",
+      "postalCode": "29203",
+      "addressCountry": "US"
+    },
+    "priceRange": "$825–$3,500 per month",
+    "petsAllowed": false,
+    "numberOfRooms": 3,
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Hot Tub", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Fitness Studio (Peloton + Gyrotonic)", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Two Fire Pits", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Solar-Powered EV Charger", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Fully Fenced & Gated", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "High-Speed Internet", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Smart Home with Keyless Entry", "value": true }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -1169,27 +1201,11 @@
       pointer-events: none;
     }
 
-    /* Nav-integrated ambient music toggle. No floating orb. */
+    /* Music toggle is not shown on the main page — music plays through the
+       welcome moment via the off-screen iframe, and that's it. Kept in DOM
+       (not deleted) so the JS references don't need to change. */
     #player-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--gold);
-      font-size: 0.95rem;
-      line-height: 1;
-      padding: 6px 10px;
-      margin-left: 1.5rem;
-      opacity: 0.35;
-      transition: opacity 0.4s ease, text-shadow 0.4s ease;
-    }
-
-    #player-toggle[hidden] { display: none; }
-
-    #player-toggle:hover { opacity: 0.9; }
-
-    #player-toggle.playing {
-      opacity: 1;
-      animation: pt-breathe 2.8s ease-in-out infinite;
+      display: none !important;
     }
 
     @keyframes pt-breathe {
@@ -1251,7 +1267,7 @@
 
   <div class="welcome-content">
     <div class="welcome-eyebrow">An Invitation · Columbia, SC</div>
-    <h1 class="welcome-title"><em>Pharoah Road.</em></h1>
+    <div class="welcome-title" role="heading" aria-level="2"><em>Pharoah Road.</em></div>
     <p class="welcome-tag">A sanctuary, by design.</p>
 
     <button id="enter-btn" class="welcome-enter" type="button">
