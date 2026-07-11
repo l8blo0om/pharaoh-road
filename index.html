@@ -1070,6 +1070,53 @@
       50%      { transform: translate(-50%, -50%) scale(1.2); opacity: 1;   }
     }
 
+    /* ── SIGNATURE GLOW SYSTEM (ported from her design library) ── */
+
+    /* Glowing outlined button that breathes */
+    .btn-glow {
+      background: #0a0a0a;
+      color: #fff;
+      border: none;
+      padding: 15px 28px;
+      cursor: pointer;
+      box-shadow:
+        0 0 0 1.5px hsl(var(--hue) 90% 60%),
+        0 0 22px hsl(var(--hue) 90% 58% / .3);
+      animation: breathe 3s ease-in-out infinite;
+    }
+
+    .btn-glow:hover {
+      background: hsl(var(--hue) 90% 58%);
+      color: #0a0a0a;
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        box-shadow:
+          0 0 0 1.5px hsl(var(--hue) 90% 60%),
+          0 0 18px hsl(var(--hue) 90% 58% / .25);
+      }
+      50% {
+        box-shadow:
+          0 0 0 1.5px hsl(var(--hue) 90% 60%),
+          0 0 32px hsl(var(--hue) 90% 58% / .5);
+      }
+    }
+
+    /* Glowing hairline (like the header border) */
+    .glow-line {
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg,
+        hsl(var(--hue) 90% 60%),
+        hsl(calc(var(--hue) + 60) 90% 60%),
+        hsl(var(--hue) 90% 60%)) 1;
+    }
+
+    /* Accent text (eyebrows, highlights) */
+    .accent {
+      color: hsl(var(--hue) 90% 62%);
+    }
+
     @keyframes welcomeIn {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -1261,7 +1308,7 @@
     <div class="welcome-title" role="heading" aria-level="2"><em>Pharoah Road.</em></div>
     <p class="welcome-tag">A sanctuary, by design.</p>
 
-    <button id="enter-btn" class="welcome-enter" type="button">
+    <button id="enter-btn" class="welcome-enter btn-glow" type="button">
       <span>Enter</span>
       <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
         <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1300,7 +1347,7 @@
   <div class="hero-geo"></div>
   <div class="hero-pattern"></div>
 
-  <div class="hero-eyebrow">5113 Farrow Road · Columbia, SC · 2024 Renovation</div>
+  <div class="hero-eyebrow accent glow-line" style="display:inline-block; padding-bottom:0.5rem;">5113 Farrow Road · Columbia, SC · 2024 Renovation</div>
   <h1 class="hero-title">
     Your Private<br><em>Sanctuary.</em>
   </h1>
