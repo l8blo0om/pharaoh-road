@@ -1049,6 +1049,27 @@
       opacity: 0;
     }
 
+    /* Signature glowpulse (ported from NSM Berlin 1936 gold-medal glow),
+       tied to the site's --hue cycle so it shifts hues too. */
+    .welcome-glow {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(360px, 55vw, 640px);
+      height: clamp(360px, 55vw, 640px);
+      background: radial-gradient(ellipse,
+                    hsla(var(--hue), 65%, 55%, 0.18) 0%,
+                    transparent 70%);
+      animation: glowpulse 2s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes glowpulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.8; }
+      50%      { transform: translate(-50%, -50%) scale(1.2); opacity: 1;   }
+    }
+
     @keyframes welcomeIn {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -1233,6 +1254,7 @@
   <div class="welcome-pattern"></div>
   <div class="welcome-rule top"></div>
   <div class="welcome-rule bottom"></div>
+  <div class="welcome-glow" aria-hidden="true"></div>
 
   <div class="welcome-content">
     <div class="welcome-eyebrow">An Invitation · Columbia, SC</div>
