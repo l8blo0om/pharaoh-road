@@ -68,8 +68,11 @@
       --charcoal: #2a2e35;
       --near-black: #1a1d22;
       --white: #f7f5f2;
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
+      /* Was #c9a84c / #e8c97a — now hue-cycling so every gold accent
+         across the site (nav, prices, em italics, section labels,
+         eyebrows, borders) pulses through the full hue in sync. */
+      --gold: hsl(var(--hue) 90% 62%);
+      --gold-light: hsl(var(--hue) 85% 74%);
       --blue-accent: #7fa8c0;
       --text-body: #e2ddd6;
       --text-muted: #9a9590;
@@ -1356,7 +1359,7 @@
     Minutes from downtown Columbia — a world away from ordinary.
   </p>
   <div class="hero-ctas">
-    <a href="#whole-home" class="btn-primary">Book the Whole Home</a>
+    <a href="#whole-home" class="btn-primary btn-glow">Book the Whole Home</a>
     <a href="#rooms" class="btn-outline">Book a Room</a>
   </div>
 
@@ -1421,7 +1424,7 @@
         <div class="price-fees">$150 cleaning · $3,300 refundable deposit · No pets</div>
       </div>
 
-      <a href="#inquire" class="btn-primary">Request Availability</a>
+      <a href="#inquire" class="btn-primary btn-glow">Request Availability</a>
     </div>
 
     <!-- Photo Mosaic -->
@@ -1843,7 +1846,7 @@
         <label for="message">Tell us about yourself</label>
         <textarea id="message" name="message" placeholder="Profession, reason for stay, any questions..."></textarea>
       </div>
-      <button type="submit" class="btn-primary" style="border:none;cursor:pointer;width:100%;text-align:center;font-size:0.75rem;">
+      <button type="submit" class="btn-primary btn-glow" style="border:none;cursor:pointer;width:100%;text-align:center;font-size:0.75rem;">
         Send Inquiry
       </button>
     </form>
