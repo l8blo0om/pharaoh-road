@@ -672,82 +672,53 @@
       color: var(--text-muted);
     }
 
-    /* ── SPACES (bonus gallery) ── */
-    #spaces {
-      background: var(--near-black);
-    }
-
-    .spaces-intro {
-      max-width: 580px;
-      color: var(--text-muted);
-      font-size: 1rem;
-      line-height: 1.9;
-      margin-top: 1rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .spaces-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      grid-auto-rows: 240px;
-      gap: 0.7rem;
-    }
-
-    .space-card {
+    /* ── PHOTO BANDS ── (full-width visual breaks between sections) */
+    .photo-band {
       position: relative;
-      overflow: hidden;
-      background: var(--charcoal);
-      margin: 0;
-    }
-
-    .space-card:first-child {
-      grid-row: span 2;
-    }
-
-    .space-photo {
       width: 100%;
-      height: 100%;
+      height: clamp(320px, 55vh, 620px);
       overflow: hidden;
+      margin: 0;
+      background: var(--charcoal);
     }
 
-    .space-photo img {
+    .photo-band img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      object-position: center;
       display: block;
+      transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
     }
 
-    .space-card:hover .space-photo img {
-      transform: scale(1.04);
-    }
+    .photo-band:hover img { transform: scale(1.03); }
 
-    .space-card figcaption {
+    .photo-band .band-caption {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.92), rgba(0,0,0,0.35) 70%, transparent);
-      pointer-events: none;
-    }
-
-    .space-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 300;
+      left: 3rem;
+      bottom: 2rem;
+      max-width: 40%;
+      padding: 0.75rem 1.3rem;
+      background: rgba(26, 29, 34, 0.62);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: var(--white);
-      margin-bottom: 0.3rem;
-      line-height: 1.1;
-    }
-
-    .space-name em {
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      color: var(--gold);
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+      border-left: 2px solid var(--gold);
     }
 
-    .space-desc {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.5;
+    @media (max-width: 900px) {
+      .photo-band { height: clamp(240px, 42vh, 420px); }
+      .photo-band .band-caption {
+        left: 1.25rem;
+        bottom: 1rem;
+        font-size: 0.98rem;
+        padding: 0.55rem 1rem;
+        max-width: 80%;
+      }
     }
 
     /* ── GROUNDS ── */
@@ -1243,8 +1214,6 @@
       .amenity-cols { grid-template-columns: 1fr 1fr; }
       .amenity-col { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); }
       .rooms-grid { grid-template-columns: 1fr; }
-      .spaces-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
-      .spaces-grid .space-card:first-child { grid-row: span 2; grid-column: span 2; }
       .grounds-features { grid-template-columns: 1fr 1fr; }
       .location-grid { grid-template-columns: 1fr; }
       .inquiry-wrap { grid-template-columns: 1fr; gap: 3rem; }
@@ -1293,7 +1262,6 @@
     <li><a href="#whole-home">The Home</a></li>
     <li><a href="#amenities">Amenities</a></li>
     <li><a href="#rooms">Rooms</a></li>
-    <li><a href="#spaces">Spaces</a></li>
     <li><a href="#grounds">The Grounds</a></li>
     <li><a href="#location">Location</a></li>
     <li><a href="#inquire">Inquire</a></li>
@@ -1358,6 +1326,12 @@
     <div class="intro-value">Burton Heights</div>
     <div class="intro-note">4 miles from downtown Columbia. Minutes to Prisma Health, USC, Benedict, Allen & Columbia College.</div>
   </div>
+</div>
+
+<!-- Photo band: foyer → first visual moment after intro strip -->
+<div class="photo-band">
+  <img src="photos/foyer.jpg" alt="The foyer — geometric stair risers and wrought-iron rail" loading="lazy" />
+  <div class="band-caption">First impression, set.</div>
 </div>
 
 <!-- WHOLE HOME -->
@@ -1487,6 +1461,12 @@
   </div>
 </section>
 
+<!-- Photo band: kitchen → visual break between amenities and rooms -->
+<div class="photo-band">
+  <img src="photos/kitchen.jpg" alt="The kitchen — subway tile, gold bar cart, neon accents" loading="lazy" />
+  <div class="band-caption">Cook in it. Live in it.</div>
+</div>
+
 <!-- ROOMS -->
 <section id="rooms">
   <div class="rooms-intro fade-up">
@@ -1567,66 +1547,11 @@
   </div>
 </section>
 
-<!-- SPACES -->
-<section id="spaces">
-  <div class="section-tag fade-up">More of the Home</div>
-  <h2 class="section-title fade-up">Every room,<br><em>its own moment.</em></h2>
-  <p class="spaces-intro fade-up">A glance at the rest of the property — the spaces between bedrooms where life actually happens.</p>
-
-  <div class="spaces-grid">
-
-    <figure class="space-card fade-up">
-      <div class="space-photo">
-        <img src="photos/living-lounge.jpg" alt="The Lounge — sectional living room with geometric wall art" loading="lazy" />
-      </div>
-      <figcaption>
-        <div class="space-name"><em>The Lounge.</em></div>
-        <div class="space-desc">Sectional, geometric wall sculpture, sunburst details, striped rug. A second living room for the moments that need quieter walls.</div>
-      </figcaption>
-    </figure>
-
-    <figure class="space-card fade-up">
-      <div class="space-photo">
-        <img src="photos/living-fireplace.jpg" alt="The Great Room — living room with electric fireplace" loading="lazy" />
-      </div>
-      <figcaption>
-        <div class="space-name"><em>The Great Room.</em></div>
-        <div class="space-desc">Wide-plank ceiling, color-changing electric fireplace, gold pendants. Room for everyone.</div>
-      </figcaption>
-    </figure>
-
-    <figure class="space-card fade-up">
-      <div class="space-photo">
-        <img src="photos/kitchen.jpg" alt="The Kitchen — subway tile, neon accents, gold bar cart" loading="lazy" />
-      </div>
-      <figcaption>
-        <div class="space-name"><em>The Kitchen.</em></div>
-        <div class="space-desc">Subway tile, neon, a gold bar cart you'll actually use. Color-changing faucet, island charging.</div>
-      </figcaption>
-    </figure>
-
-    <figure class="space-card fade-up">
-      <div class="space-photo">
-        <img src="photos/foyer.jpg" alt="The Foyer — geometric stair tile and wood feature wall" loading="lazy" />
-      </div>
-      <figcaption>
-        <div class="space-name"><em>The Foyer.</em></div>
-        <div class="space-desc">Geometric stair tile, wrought-iron rail, wood feature wall. First impression, set.</div>
-      </figcaption>
-    </figure>
-
-    <figure class="space-card fade-up">
-      <div class="space-photo">
-        <img src="photos/game-room.jpg" alt="The Game Room — pool table that converts to dining" loading="lazy" />
-      </div>
-      <figcaption>
-        <div class="space-name"><em>The Game Room.</em></div>
-        <div class="space-desc">Pool table converts to dining for ten. Built for nights that turn into something.</div>
-      </figcaption>
-    </figure>
-
-  </div>
-</section>
+<!-- Photo band: living-fireplace → transition from rooms to grounds -->
+<div class="photo-band">
+  <img src="photos/living-fireplace.jpg" alt="The great room with electric fireplace and gold pendants" loading="lazy" />
+  <div class="band-caption">The great room. Room for everyone.</div>
+</div>
 
 <!-- GROUNDS -->
 <section id="grounds">
@@ -1701,6 +1626,12 @@
   </div>
 </section>
 
+<!-- Photo band: living-lounge → transition into location -->
+<div class="photo-band">
+  <img src="photos/living-lounge.jpg" alt="The lounge — sectional and geometric wall art" loading="lazy" />
+  <div class="band-caption">A second living room, for the quieter walls.</div>
+</div>
+
 <!-- LOCATION -->
 <section id="location">
   <div class="section-tag fade-up">Where We Are</div>
@@ -1758,6 +1689,12 @@
     </div>
   </div>
 </section>
+
+<!-- Photo band: game-room → final visual before the inquiry form -->
+<div class="photo-band">
+  <img src="photos/game-room.jpg" alt="The game room — pool table that converts to dining" loading="lazy" />
+  <div class="band-caption">Nights that turn into something.</div>
+</div>
 
 <!-- INQUIRE -->
 <section id="inquire">
