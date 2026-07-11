@@ -1923,6 +1923,16 @@
 
     setTimeout(() => {
       if (welcomeEl.parentNode) welcomeEl.parentNode.removeChild(welcomeEl);
+      // Kill audio + destroy the iframe when welcome fade completes.
+      // Prevents the mobile OS media-session card from persisting.
+      if (spotifyController) {
+        try { spotifyController.pause();   } catch (e) {}
+        try { spotifyController.destroy(); } catch (e) {}
+        spotifyController = null;
+      }
+      if (playerEl && playerEl.parentNode) {
+        playerEl.parentNode.removeChild(playerEl);
+      }
     }, 1300);
   }
 
@@ -1934,6 +1944,12 @@
     document.body.classList.remove('welcome-on');
     if (welcomeEl && welcomeEl.parentNode) welcomeEl.parentNode.removeChild(welcomeEl);
     toggleBtn.hidden = false;
+    // Returning visitor — no music needed, remove the iframe mount entirely
+    // so the Spotify script has nothing to attach to and no media session
+    // can appear on mobile.
+    if (playerEl && playerEl.parentNode) {
+      playerEl.parentNode.removeChild(playerEl);
+    }
   } else {
     enterBtn.addEventListener('click', () => enterSite(true));
     silentBtn.addEventListener('click', () => enterSite(false));
