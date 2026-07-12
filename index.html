@@ -1149,6 +1149,28 @@
       color: var(--gold);
     }
 
+    /* Logo image in welcome overlay title — floats as a cream art-print card
+       against the dark welcome background. */
+    .welcome-logo {
+      display: block;
+      width: clamp(320px, 55vw, 620px);
+      height: auto;
+      margin: 0 auto;
+      border-radius: 6px;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(201, 168, 76, 0.25);
+    }
+
+    .footer-logo img {
+      display: block;
+      width: 200px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 3px;
+      margin: 0 auto 4px;
+    }
+
     .welcome-tag {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
@@ -1308,7 +1330,9 @@
 
   <div class="welcome-content">
     <div class="welcome-eyebrow">An Invitation · Columbia, SC</div>
-    <div class="welcome-title" role="heading" aria-level="2"><em>Pharoah Road.</em></div>
+    <div class="welcome-title" role="heading" aria-level="2">
+      <img src="/logo.jpg" alt="Pharoah Road" class="welcome-logo" />
+    </div>
     <p class="welcome-tag">A sanctuary, by design.</p>
 
     <button id="enter-btn" class="welcome-enter btn-glow" type="button">
@@ -1855,7 +1879,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Pharoah Road</div>
+  <div class="footer-logo"><img src="/logo.jpg" alt="Pharoah Road" /></div>
   <div class="footer-note">© 2026 · Columbia, SC · All rights reserved</div>
   <div class="footer-address">5113 Farrow Road<br>Columbia, SC 29203</div>
 </footer>
