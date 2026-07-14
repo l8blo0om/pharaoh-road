@@ -765,6 +765,46 @@
       to { transform: translateX(-50%); }
     }
 
+    /* ── FEATURE TICKER ── (top of page, below fixed nav) */
+    .feature-ticker-wrap {
+      margin-top: 4.2rem;           /* clears the fixed nav */
+      overflow: hidden;
+      padding: 0.8rem 0;
+      background: rgba(0, 0, 0, 0.35);
+      border-top: 1px solid rgba(201, 168, 76, 0.14);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.14);
+      position: relative;
+      z-index: 90;
+    }
+
+    .feature-ticker {
+      display: flex;
+      gap: 2.4rem;
+      animation: marquee 55s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    .feature-ticker span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.22em;
+      color: var(--text-body);
+    }
+
+    .feature-ticker .dot {
+      color: var(--gold);
+      font-size: 0.75rem;
+      transform: translateY(-1px);
+    }
+
+    .feature-ticker:hover { animation-play-state: paused; }
+
+    @media (max-width: 600px) {
+      .feature-ticker { gap: 1.6rem; animation-duration: 45s; }
+      .feature-ticker span { font-size: 0.78rem; letter-spacing: 0.18em; }
+    }
+
     .grounds-features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1400,6 +1440,49 @@
 <!-- Off-screen Spotify iframe mount, driven via the iframe API -->
 <div id="spotify-player" aria-hidden="true"></div>
 
+<!-- FEATURE TICKER -->
+<div class="feature-ticker-wrap" aria-label="Home features">
+  <div class="feature-ticker">
+    <span>3 BEDROOMS</span><span class="dot">◆</span>
+    <span>2.5 BATHROOMS</span><span class="dot">◆</span>
+    <span>2,700 SQ FT</span><span class="dot">◆</span>
+    <span>2024 RENOVATION</span><span class="dot">◆</span>
+    <span>FULLY FURNISHED</span><span class="dot">◆</span>
+    <span>UTILITIES INCLUDED</span><span class="dot">◆</span>
+    <span>HOT TUB</span><span class="dot">◆</span>
+    <span>TWO FIRE PITS</span><span class="dot">◆</span>
+    <span>PELOTON + GYROTONIC</span><span class="dot">◆</span>
+    <span>SPEAKEASY DOOR</span><span class="dot">◆</span>
+    <span>GRAND PIANO</span><span class="dot">◆</span>
+    <span>SOLAR EV CHARGING</span><span class="dot">◆</span>
+    <span>FULLY FENCED &amp; GATED</span><span class="dot">◆</span>
+    <span>HEATED OUTDOOR DINING</span><span class="dot">◆</span>
+    <span>SMART HOME · ALEXA</span><span class="dot">◆</span>
+    <span>COLOR-CHANGING FIREPLACES</span><span class="dot">◆</span>
+    <span>RAIN SHOWER HEAD</span><span class="dot">◆</span>
+    <span>1.5 MI TO RICHLAND MEMORIAL</span><span class="dot">◆</span>
+    <!-- duplicated for seamless loop -->
+    <span>3 BEDROOMS</span><span class="dot">◆</span>
+    <span>2.5 BATHROOMS</span><span class="dot">◆</span>
+    <span>2,700 SQ FT</span><span class="dot">◆</span>
+    <span>2024 RENOVATION</span><span class="dot">◆</span>
+    <span>FULLY FURNISHED</span><span class="dot">◆</span>
+    <span>UTILITIES INCLUDED</span><span class="dot">◆</span>
+    <span>HOT TUB</span><span class="dot">◆</span>
+    <span>TWO FIRE PITS</span><span class="dot">◆</span>
+    <span>PELOTON + GYROTONIC</span><span class="dot">◆</span>
+    <span>SPEAKEASY DOOR</span><span class="dot">◆</span>
+    <span>GRAND PIANO</span><span class="dot">◆</span>
+    <span>SOLAR EV CHARGING</span><span class="dot">◆</span>
+    <span>FULLY FENCED &amp; GATED</span><span class="dot">◆</span>
+    <span>HEATED OUTDOOR DINING</span><span class="dot">◆</span>
+    <span>SMART HOME · ALEXA</span><span class="dot">◆</span>
+    <span>COLOR-CHANGING FIREPLACES</span><span class="dot">◆</span>
+    <span>RAIN SHOWER HEAD</span><span class="dot">◆</span>
+    <span>1.5 MI TO RICHLAND MEMORIAL</span><span class="dot">◆</span>
+  </div>
+</div>
+
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
@@ -1445,7 +1528,7 @@
   <div class="intro-divider"></div>
   <div class="intro-item">
     <div class="intro-label">Private Rooms</div>
-    <div class="intro-value">From $825 / mo</div>
+    <div class="intro-value">From $950 / mo</div>
     <div class="intro-note">Individually furnished rooms with shared access to all amenities including the fitness studio and hot tub.</div>
   </div>
   <div class="intro-divider"></div>
@@ -1623,7 +1706,7 @@
           <span class="room-feature">Bidet</span>
           <span class="room-feature">Split HVAC</span>
         </div>
-        <div class="room-price">$1,200 <span>/ month</span></div>
+        <div class="room-price">$1,350 <span>/ month</span></div>
         <div class="room-fees">$150 cleaning · $3,300 refundable deposit</div>
       </div>
     </div>
@@ -1645,7 +1728,7 @@
           <span class="room-feature">Fire TV</span>
           <span class="room-feature">Split HVAC</span>
         </div>
-        <div class="room-price">$825 <span>/ month</span></div>
+        <div class="room-price">$950 <span>/ month</span></div>
         <div class="room-fees">$150 cleaning · $3,300 refundable deposit</div>
       </div>
     </div>
@@ -1667,7 +1750,7 @@
           <span class="room-feature">Fire TV</span>
           <span class="room-feature">Split HVAC</span>
         </div>
-        <div class="room-price">$925 <span>/ month</span></div>
+        <div class="room-price">$1,050 <span>/ month</span></div>
         <div class="room-fees">$150 cleaning · $3,300 refundable deposit</div>
       </div>
     </div>
