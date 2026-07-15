@@ -765,6 +765,16 @@
       to { transform: translateX(-50%); }
     }
 
+    /* When the tab is hidden (backgrounded, screen off, in another app), pause
+       every running animation. Combined with iOS Safari's aggressive tab
+       eviction, this dramatically reduces the "flash white + reload" symptom
+       that happens when the OS reclaims memory from a busy background tab. */
+    html.tab-hidden *,
+    html.tab-hidden *::before,
+    html.tab-hidden *::after {
+      animation-play-state: paused !important;
+    }
+
     /* ── FEATURE TICKER ── (top of page, below fixed nav) */
     .feature-ticker-wrap {
       margin-top: 4.2rem;           /* clears the fixed nav */
@@ -1541,7 +1551,7 @@
 
 <!-- Photo band: foyer → first visual moment after intro strip -->
 <div class="photo-band">
-  <img src="photos/foyer.jpg" alt="The foyer — geometric stair risers and wrought-iron rail" loading="lazy" />
+  <img src="photos/foyer.jpg" alt="The foyer — geometric stair risers and wrought-iron rail" loading="lazy" decoding="async" />
   <div class="band-caption">First impression, set.</div>
 </div>
 
@@ -1674,7 +1684,7 @@
 
 <!-- Photo band: kitchen → visual break between amenities and rooms -->
 <div class="photo-band">
-  <img src="photos/kitchen.jpg" alt="The kitchen — subway tile, gold bar cart, neon accents" loading="lazy" />
+  <img src="photos/kitchen.jpg" alt="The kitchen — subway tile, gold bar cart, neon accents" loading="lazy" decoding="async" />
   <div class="band-caption">Cook in it. Live in it.</div>
 </div>
 
@@ -1760,7 +1770,7 @@
 
 <!-- Photo band: living-fireplace → transition from rooms to grounds -->
 <div class="photo-band">
-  <img src="photos/living-fireplace.jpg" alt="The great room with electric fireplace and gold pendants" loading="lazy" />
+  <img src="photos/living-fireplace.jpg" alt="The great room with electric fireplace and gold pendants" loading="lazy" decoding="async" />
   <div class="band-caption">The great room. Room for everyone.</div>
 </div>
 
@@ -1839,7 +1849,7 @@
 
 <!-- Photo band: living-lounge → transition into location -->
 <div class="photo-band">
-  <img src="photos/living-lounge.jpg" alt="The lounge — sectional and geometric wall art" loading="lazy" />
+  <img src="photos/living-lounge.jpg" alt="The lounge — sectional and geometric wall art" loading="lazy" decoding="async" />
   <div class="band-caption">A second living room, for the quieter walls.</div>
 </div>
 
@@ -1903,7 +1913,7 @@
 
 <!-- Photo band: game-room → final visual before the inquiry form -->
 <div class="photo-band">
-  <img src="photos/game-room.jpg" alt="The game room — pool table that converts to dining" loading="lazy" />
+  <img src="photos/game-room.jpg" alt="The game room — pool table that converts to dining" loading="lazy" decoding="async" />
   <div class="band-caption">Nights that turn into something.</div>
 </div>
 
@@ -2107,6 +2117,26 @@
     if (!spotifyController) return;
     try { spotifyController.togglePlay(); } catch (e) {}
   });
+
+  // ── Memory-pressure defense ──
+  // Toggle a class on <html> when the tab is hidden so the CSS above
+  // pauses every animation. Also pauses the Spotify iframe (biggest
+  // reclaimable chunk of memory when backgrounded). This is the fix
+  // for "screen flashes white then reloads" on iOS Safari — those
+  // reloads are iOS reclaiming memory from a heavy background tab.
+  (function () {
+    var root = document.documentElement;
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        root.classList.add('tab-hidden');
+        if (typeof spotifyController !== 'undefined' && spotifyController) {
+          try { spotifyController.pause(); } catch (e) {}
+        }
+      } else {
+        root.classList.remove('tab-hidden');
+      }
+    });
+  })();
 
   // Intersection Observer for fade-up animations
   const observer = new IntersectionObserver((entries) => {
