@@ -152,12 +152,32 @@
       background: var(--near-black);
     }
 
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
     .hero-bg {
       position: absolute;
       inset: 0;
       background:
         radial-gradient(ellipse at 70% 40%, rgba(107,127,142,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(26,29,34,0.55) 0%, rgba(26,29,34,0.15) 45%, rgba(26,29,34,0.8) 100%);
+    }
+
+    /* Hero content sits above the video + gradient */
+    #hero .hero-eyebrow,
+    #hero .hero-title,
+    #hero .hero-sub,
+    #hero .hero-ctas,
+    #hero .hero-stats {
+      z-index: 2;
     }
 
     .hero-geo {
@@ -1495,6 +1515,9 @@
 
 <!-- HERO -->
 <section id="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/og-image.jpg" aria-hidden="true">
+    <source src="/videos/hero-drive.mp4" type="video/mp4">
+  </video>
   <div class="hero-bg"></div>
   <div class="hero-geo"></div>
   <div class="hero-pattern"></div>

@@ -21,3 +21,7 @@ att.*
 
 # Design experiments (Freepik, mockups)
 freepik_*
+
+# Intentional site videos (hero, section bands)
+!videos/
+!videos/**
