@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Pharoah Road</title>
+<meta name="description" content="Photo gallery of Pharoah Road, a fully renovated home in Columbia, SC.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="theme-color" content="#1a1d22">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  @property --hue {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+  }
+  :root {
+    --charcoal: #2a2e35;
+    --near-black: #1a1d22;
+    --white: #f7f5f2;
+    --gold: hsl(var(--hue) 90% 62%);
+    --gold-static: #c9a84c;
+    --text-body: #e2ddd6;
+    --text-muted: #9a9590;
+    --rule: rgba(201,168,76,0.15);
+    --hue: 0;
+  }
+  html {
+    animation: huecycle 22s linear infinite;
+  }
+  @keyframes huecycle { to { --hue: 360; } }
+  html.tab-hidden *,
+  html.tab-hidden *::before,
+  html.tab-hidden *::after {
+    animation-play-state: paused !important;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--near-black);
+    color: var(--text-body);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(26,29,34,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-back {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-body);
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .nav-back:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* HEADER */
+  .g-head {
+    padding: 8rem 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .g-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .g-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .g-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .g-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  /* SECTION */
+  section.g-section {
+    padding: 3rem 3rem 1rem;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .sec-h {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 1.2rem;
+  }
+  .sec-h h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.9rem;
+    letter-spacing: -0.005em;
+    color: var(--white);
+  }
+  .sec-h .count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+
+  /* GRID */
+  .g-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0.6rem;
+  }
+  .g-cell {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--charcoal);
+    cursor: zoom-in;
+    border: 0;
+    padding: 0;
+  }
+  .g-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(.2,.7,.2,1);
+  }
+  .g-cell:hover img { transform: scale(1.05); }
+  .g-cell figcaption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 0.9rem 1rem;
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .g-cell:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Feature cells */
+  .g-cell.wide { grid-column: span 2; }
+  .g-cell.tall { grid-row: span 2; aspect-ratio: 3/4; }
+
+  /* Coming-soon placeholder */
+  .g-cell.placeholder {
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 8px, transparent 8px 20px),
+      var(--charcoal);
+    cursor: default;
+    display: grid;
+    place-items: center;
+    padding: 1.4rem;
+    border: 1px dashed var(--rule);
+  }
+  .g-cell.placeholder:hover img { transform: none; }
+  .g-cell.placeholder .ph-body {
+    text-align: center;
+    max-width: 24ch;
+  }
+  .g-cell.placeholder .ph-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .g-cell.placeholder .ph-body p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-body);
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+  }
+  .g-cell.placeholder .ph-body span {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* LIGHTBOX */
+  .lb {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 12, 0.94);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(6px);
+  }
+  .lb.open { display: flex; }
+  .lb-img {
+    max-width: min(1400px, 92vw);
+    max-height: 82vh;
+    object-fit: contain;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+  .lb-caption {
+    position: fixed;
+    bottom: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    background: rgba(0,0,0,0.6);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    max-width: 90vw;
+    text-align: center;
+  }
+  .lb-close,
+  .lb-nav {
+    position: fixed;
+    background: rgba(0,0,0,0.55);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.15);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .lb-close:hover,
+  .lb-nav:hover { background: rgba(0,0,0,0.85); border-color: var(--gold); color: var(--gold); }
+  .lb-close { top: 1.2rem; right: 1.2rem; }
+  .lb-prev { left: 1.2rem; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 1.2rem; top: 50%; transform: translateY(-50%); }
+  .lb-counter {
+    position: fixed;
+    top: 1.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-muted);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+  }
+
+  /* FOOTER */
+  footer.g-foot {
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--rule);
+    margin-top: 3rem;
+  }
+  footer.g-foot a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+  }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.2rem; }
+    .g-head { padding: 6.5rem 1.2rem 1rem; }
+    section.g-section { padding: 2rem 1.2rem 0.5rem; }
+    .g-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.4rem; }
+    .g-cell.wide, .g-cell.tall { grid-column: auto; grid-row: auto; aspect-ratio: 4/3; }
+    .g-cell figcaption { opacity: 1; transform: none; font-size: 0.9rem; }
+    .lb-close, .lb-nav { width: 40px; height: 40px; font-size: 1.1rem; }
+    .lb-caption { bottom: 4rem; font-size: 0.95rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Pharoah Road</a>
+  <a href="/" class="nav-back">← Home</a>
+</nav>
+
+<header class="g-head">
+  <div class="g-eyebrow">Gallery · 5113 Farrow Road · Columbia, SC</div>
+  <h1 class="g-title">The <em>house,</em> room by room.</h1>
+  <p class="g-sub">Every interior currently photographed lives here. Outdoor shots are coming — the hot tub, the two fire pits, the fitness studio, the heated dining, the pickleball setup — all real, all visitable, none yet on the site.</p>
+</header>
+
+<section class="g-section">
+  <div class="sec-h">
+    <h2>Arrival</h2>
+    <span class="count">2 photos</span>
+  </div>
+  <div class="g-grid">
+    <figure class="g-cell wide"><img src="/photos/entry.jpg" alt="Striped porch and speakeasy door" loading="lazy" decoding="async" data-caption="The striped porch + speakeasy door"><figcaption>The striped porch + speakeasy door</figcaption></figure>
+    <figure class="g-cell"><img src="/photos/foyer.jpg" alt="Chevron-tile stair risers and iron scroll rail" loading="lazy" decoding="async" data-caption="The foyer — chevron risers, iron scroll rail"><figcaption>The foyer — chevron risers, iron rail</figcaption></figure>
+  </div>
+</section>
+
+<section class="g-section">
+  <div class="sec-h">
+    <h2>Buddha · Dharma · Sangha</h2>
+    <span class="count">3 photos</span>
+  </div>
+  <div class="g-grid">
+    <figure class="g-cell"><img src="/photos/master-wide.jpg" alt="Buddha — the master suite" loading="lazy" decoding="async" data-caption="Buddha — the master suite ($1,350/mo)"><figcaption>Buddha — the master suite</figcaption></figure>
+    <figure class="g-cell"><img src="/photos/bedroom3.jpg" alt="Dharma — lower level bedroom" loading="lazy" decoding="async" data-caption="Dharma — the middle room ($1,050/mo)"><figcaption>Dharma — the middle room</figcaption></figure>
+    <figure class="g-cell"><img src="/photos/loft1.jpg" alt="Sangha — the loft bedroom" loading="lazy" decoding="async" data-caption="Sangha — the dormer loft ($950/mo)"><figcaption>Sangha — the dormer loft</figcaption></figure>
+  </div>
+</section>
+
+<section class="g-section">
+  <div class="sec-h">
+    <h2>Kitchen + Living</h2>
+    <span class="count">3 photos</span>
+  </div>
+  <div class="g-grid">
+    <figure class="g-cell wide"><img src="/photos/kitchen.jpg" alt="Kitchen with subway tile, neon accents, and gold bar cart" loading="lazy" decoding="async" data-caption="The kitchen — subway tile, neon, gold bar cart"><figcaption>The kitchen — subway tile, neon, gold bar cart</figcaption></figure>
+    <figure class="g-cell"><img src="/photos/living-fireplace.jpg" alt="Great room with electric fireplace and gold pendants" loading="lazy" decoding="async" data-caption="The great room — wood ceiling, color-changing fireplace"><figcaption>The great room</figcaption></figure>
+    <figure class="g-cell"><img src="/photos/living-lounge.jpg" alt="Second living room with sectional and geometric wall art" loading="lazy" decoding="async" data-caption="The lounge — sectional, geometric wall art"><figcaption>The lounge</figcaption></figure>
+  </div>
+</section>
+
+<section class="g-section">
+  <div class="sec-h">
+    <h2>Bar · Laundry · Game Room</h2>
+    <span class="count">3 photos</span>
+  </div>
+  <div class="g-grid">
+    <figure class="g-cell"><img src="/photos/bar.jpg" alt="Built-in bar with floating shelves and slate-blue wall" loading="lazy" decoding="async" data-caption="The built-in bar — Buddha figurines, floating shelves"><figcaption>The bar</figcaption></figure>
+    <figure class="g-cell"><img src="/photos/laundry.jpg" alt="Laundry room with blue barn door and Buddha painting" loading="lazy" decoding="async" data-caption="The laundry — blue barn door, Buddha painting, penny tile"><figcaption>The laundry</figcaption></figure>
+    <figure class="g-cell"><img src="/photos/game-room.jpg" alt="Game room with pool table that converts to dining" loading="lazy" decoding="async" data-caption="The game room — pool table converts to dining"><figcaption>The game room</figcaption></figure>
+  </div>
+</section>
+
+<section class="g-section" id="outside">
+  <div class="sec-h">
+    <h2>Outside</h2>
+    <span class="count">Coming soon</span>
+  </div>
+  <div class="g-grid">
+    <figure class="g-cell placeholder">
+      <div class="ph-body">
+        <div class="ph-eyebrow">Hot Tub</div>
+        <p>Landscaped, year-round, private.</p>
+        <span>Photo forthcoming</span>
+      </div>
+    </figure>
+    <figure class="g-cell placeholder">
+      <div class="ph-body">
+        <div class="ph-eyebrow">Two Fire Pits</div>
+        <p>Two gathering points after dark.</p>
+        <span>Photo forthcoming</span>
+      </div>
+    </figure>
+    <figure class="g-cell placeholder">
+      <div class="ph-body">
+        <div class="ph-eyebrow">Fitness Studio</div>
+        <p>Peloton + Gyrotonic, backyard.</p>
+        <span>Photo forthcoming</span>
+      </div>
+    </figure>
+    <figure class="g-cell placeholder">
+      <div class="ph-body">
+        <div class="ph-eyebrow">Heated Outdoor Dining</div>
+        <p>A full table, warmed for shoulder seasons.</p>
+        <span>Photo forthcoming</span>
+      </div>
+    </figure>
+    <figure class="g-cell placeholder">
+      <div class="ph-body">
+        <div class="ph-eyebrow">Pickleball + Putt-Putt</div>
+        <p>Backyard play, kids or grownups.</p>
+        <span>Photo forthcoming</span>
+      </div>
+    </figure>
+    <figure class="g-cell placeholder">
+      <div class="ph-body">
+        <div class="ph-eyebrow">Gate + Fence</div>
+        <p>Fully fenced and gated, living-fence edge.</p>
+        <span>Photo forthcoming</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<footer class="g-foot">
+  <a href="/">← Back to Pharoah Road</a>
+</footer>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="lb-counter" id="lb-counter"></div>
+  <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">‹</button>
+  <img class="lb-img" id="lb-img" alt="">
+  <div class="lb-caption" id="lb-caption"></div>
+  <button class="lb-nav lb-next" id="lb-next" aria-label="Next">›</button>
+</div>
+
+<script>
+  // Lightbox
+  (function () {
+    var cells = Array.from(document.querySelectorAll('.g-cell:not(.placeholder)'));
+    var imgs = cells.map(function (c) {
+      var i = c.querySelector('img');
+      return { src: i.src, alt: i.alt, caption: i.dataset.caption || i.alt };
+    });
+    var lb = document.getElementById('lb');
+    var lbImg = document.getElementById('lb-img');
+    var lbCap = document.getElementById('lb-caption');
+    var lbCounter = document.getElementById('lb-counter');
+    var idx = 0;
+    function show(i) {
+      idx = (i + imgs.length) % imgs.length;
+      lbImg.src = imgs[idx].src;
+      lbImg.alt = imgs[idx].alt;
+      lbCap.textContent = imgs[idx].caption;
+      lbCounter.textContent = (idx + 1) + ' / ' + imgs.length;
+    }
+    function open(i) {
+      show(i);
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    cells.forEach(function (c, i) {
+      c.addEventListener('click', function () { open(i); });
+    });
+    document.getElementById('lb-close').addEventListener('click', close);
+    document.getElementById('lb-prev').addEventListener('click', function (e) { e.stopPropagation(); show(idx - 1); });
+    document.getElementById('lb-next').addEventListener('click', function (e) { e.stopPropagation(); show(idx + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(idx - 1);
+      if (e.key === 'ArrowRight') show(idx + 1);
+    });
+  })();
+
+  // Visibility → pause animations to defend against iOS Safari OOM
+  document.addEventListener('visibilitychange', function () {
+    document.documentElement.classList.toggle('tab-hidden', document.hidden);
+  });
+</script>
+
+</body>
+</html>
