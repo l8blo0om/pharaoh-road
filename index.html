@@ -2169,16 +2169,6 @@
 
     setTimeout(() => {
       if (welcomeEl.parentNode) welcomeEl.parentNode.removeChild(welcomeEl);
-      // Kill audio + destroy the iframe when welcome fade completes.
-      // Prevents the mobile OS media-session card from persisting.
-      if (spotifyController) {
-        try { spotifyController.pause();   } catch (e) {}
-        try { spotifyController.destroy(); } catch (e) {}
-        spotifyController = null;
-      }
-      if (playerEl && playerEl.parentNode) {
-        playerEl.parentNode.removeChild(playerEl);
-      }
     }, 1300);
   }
 
