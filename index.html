@@ -31,10 +31,10 @@
     "image": "https://pharoahroad.com/og-image.jpg",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "5113 Farrow Road",
+      "streetAddress": "Columbia, SC",
       "addressLocality": "Columbia",
       "addressRegion": "SC",
-      "postalCode": "29203",
+      "postalCode": "SC",
       "addressCountry": "US"
     },
     "priceRange": "$825–$3,500 per month",
@@ -1564,7 +1564,7 @@
   <div class="hero-geo"></div>
   <div class="hero-pattern"></div>
 
-  <div class="hero-eyebrow accent glow-line" style="display:inline-block; padding-bottom:0.5rem;">5113 Farrow Road · Columbia, SC · 2024 Renovation</div>
+  <div class="hero-eyebrow accent glow-line" style="display:inline-block; padding-bottom:0.5rem;">Luxury Home · Columbia, SC · 2024 Renovation</div>
   <h1 class="hero-title">
     Your Private<br><em>Sanctuary.</em>
   </h1>
@@ -1591,6 +1591,30 @@
       <div class="stat-label">Sq Ft</div>
     </div>
   </div>
+</section>
+
+<!-- CAROUSEL SECTION -->
+<section id="carousel-section" style="background: var(--near-black); padding: 0; overflow: hidden; position: relative; height: 600px;">
+  <div class="carousel-container" style="position: relative; width: 100%; height: 100%; overflow: hidden;">
+    <div class="carousel-track" style="display: flex; height: 100%; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform;">
+      <!-- Images will be dynamically inserted here -->
+    </div>
+  </div>
+  <style>
+    .carousel-container {
+      background: linear-gradient(135deg, rgba(26,29,34,0.8), rgba(46,49,56,0.8));
+    }
+    .carousel-track img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      flex-shrink: 0;
+    }
+    @media (max-width: 900px) {
+      #carousel-section { height: 400px; }
+    }
+  </style>
 </section>
 
 <!-- INTRO STRIP -->
@@ -2071,7 +2095,7 @@
 <footer>
   <div class="footer-logo"><img src="/logo.jpg" alt="Pharoah Road" /></div>
   <div class="footer-note">© 2026 · Columbia, SC · All rights reserved</div>
-  <div class="footer-address">5113 Farrow Road<br>Columbia, SC 29203</div>
+  <div class="footer-address">Luxury Home<br>Columbia, SC</div>
 </footer>
 
 <!-- Google Translate -->
@@ -2226,7 +2250,33 @@
   document.querySelectorAll('.rooms-grid .room-card, .grounds-features .ground-feature, .amenity-cols .amenity-col').forEach((el, i) => {
     el.style.transitionDelay = `${i * 0.08}s`;
   });
-</script>
+
+  // ── CAROUSEL AUTO-ROTATE ──
+  (function() {
+    const carouselImages = ['01-living-fireplace.jpg', '02-master-room.jpg', '03-game-room.jpg', '04-foyer.jpg', '05-upstairs-bedroom-2.jpg', '06-living-lounge.jpg', '07-kitchen.jpg', '08-backyard-lounge.jpg', '09-backyard-pergola.jpg', '0960B4C8-3917-4929-ADE5-28650968D41B (1).png', '0960B4C8-3917-4929-ADE5-28650968D41B.png', '0FB5E7B2-0614-4358-B46C-8F8AD172343D (1).png', '10-upstairs-loft-bedroom.jpg', '11-bar.jpg', '12-laundry.jpg', '16A8E3BC-14F1-412A-B903-7B31643FE327.png', '1C17700B-6CDB-48E6-B177-9EB01785879A (1).png', '1C17700B-6CDB-48E6-B177-9EB01785879A.png', '21C781E8-D160-47DF-90A5-2B411D62AB6A.png', '23D95A1E-EF68-4A97-88B9-890EC3C38F51.png', '28C09772-B8B5-4A9D-B166-FA86D22A9745.png', '33A2DD62-F1FF-4FE2-A923-F487F659A1E7.png', '433D72B2-1B13-4940-AF96-8AE51272444F.png', '4647938D-6257-46E8-9206-0B0D7690D349 (1).png', '4647938D-6257-46E8-9206-0B0D7690D349.png', '4AA8A8C6-9AF1-4286-B344-831AFA55D59E.png', '4CF5AC04-083F-4FD8-A91E-A0B64BF6EA06.png', '539CEFF5-22F1-47A3-808C-7142EF0B6E95.png', '54E14480-BBA6-4040-9D0A-4B18B0D35166.png', '55CB9D0E-06A6-4255-AA16-2BE85981AA32.png', '5DEDCFBB-EB7E-4ED5-9157-0A8FFCB13C66.png', '5E3FDC38-DCE7-474D-81C1-8E6D965628E8 (1).png', '5E3FDC38-DCE7-474D-81C1-8E6D965628E8.png', '5F50713F-B868-4DBB-A1C3-66554A375658 (1).png', '5F50713F-B868-4DBB-A1C3-66554A375658 (2).png', '5F50713F-B868-4DBB-A1C3-66554A375658.png', '60B4CE91-A31F-48A1-8C70-69A992B5A6A0.png', '615E8EC2-D3E6-4F3A-86A8-B9C635376BFD.png', '627B2975-0199-437F-8E8A-E360421D07D9 (1).png', '627B2975-0199-437F-8E8A-E360421D07D9.png', '6F3566B5-38BC-4988-A5D0-DB332A89F32C.png', '7B93A702-3ACD-4545-8DCF-F15A906C89E5.png', '7EDDE2CB-85E6-4EAD-9BD4-C884B8671214.png', '7F286072-7177-41F9-BEDE-D6911AA82562.png', '7FB9CB4C-455E-40E6-A400-4B8269BB57FA.png', '8358B28A-1CF1-4549-82CE-E5C01FE6C981.png', '88C6B3C0-5109-49B7-ACEA-39A1589F3013.png', '8A520A13-70EC-4A76-B25D-76E22D825BEC (1).png', '8A520A13-70EC-4A76-B25D-76E22D825BEC.png', '8B1193CC-C4DF-4A93-8923-4AF1084CCEC7.png'];
+    const track = document.querySelector('.carousel-track');
+    
+    if (!track) return;
+    
+    const imageHTML = carouselImages.map(img => 
+      `<img src="photos/carousel/${img}" alt="Pharoah Road" loading="lazy" decoding="async" />`
+    ).join('');
+    track.innerHTML = imageHTML;
+    
+    let currentIndex = 0;
+    const imgs = track.querySelectorAll('img');
+    const totalImages = imgs.length;
+    
+    if (totalImages === 0) return;
+    
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalImages;
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }, 4000);
+  })();
+
+
+  </script>
 
 </body>
 </html>
